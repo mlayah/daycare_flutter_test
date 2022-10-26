@@ -2,8 +2,7 @@ import 'package:crud_exam/models/child.dart';
 import 'package:crud_exam/ui/create_page.dart';
 import 'package:crud_exam/ui/edit_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +16,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    //initialize growable list<String> with sample data for testing
+   
+   // initialize the list of daycare children with sample data 
+   // ideally,this would be done in a service class,or state manager like bloc,provider,etc
+   // which would be injected into this class. I have kept it simple for the sake of this test
+
     daycareChildren = [
       DaycareChild(
         firstName: 'John',
@@ -88,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                     DataCell(
                       IconButton(
                         onPressed: () async {
-                          //navigate to edit page and await the result
+                       
                           var updatedChild = await Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -115,10 +118,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
 
-      //add floating action button
+      
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          //navigate to create page
+          
 
           var newChild = await Navigator.push(
             context,

@@ -1,4 +1,6 @@
 import 'package:crud_exam/models/child.dart';
+import 'package:crud_exam/utils/constants.dart';
+import 'package:crud_exam/utils/helpers.dart';
 import 'package:flutter/material.dart';
 
 class EditPage extends StatefulWidget {
@@ -13,9 +15,9 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
-  //form key
+ 
   final _formKey = GlobalKey<FormState>();
-  //text controllers
+
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController parentPhoneNumberController = TextEditingController();
@@ -23,6 +25,8 @@ class _EditPageState extends State<EditPage> {
   @override
   void initState() {
     super.initState();
+
+    //initializing the controllers with the values from the child object passed from the previous page
     firstNameController.text = widget.dayCareChild.firstName;
     lastNameController.text = widget.dayCareChild.lastName;
     parentPhoneNumberController.text = widget.dayCareChild.parentPhoneNumber;
@@ -35,7 +39,7 @@ class _EditPageState extends State<EditPage> {
         title: const Text('Edit Child Details'),
       ),
       body: Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(h24),
         child: Center(
           child: Form(
             key: _formKey,
@@ -43,56 +47,42 @@ class _EditPageState extends State<EditPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //first name
+                
+
                 TextFormField(
                   controller: firstNameController,
-                  decoration: const InputDecoration(
-                    labelText: 'First Name',
-                    border: OutlineInputBorder(),
-                  ),
+                  decoration: Helpers.defaultInputDecoration('First Name'),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a first name';
-                    }
-                    return null;
+                    return Helpers.validateNotEmpty(value);
                   },
                 ),
-                const SizedBox(height: 24),
-                //last name
+                const SizedBox(height: h24),
+                
+
                 TextFormField(
                   controller: lastNameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Last Name',
-                    border: OutlineInputBorder(),
-                  ),
+                  decoration: Helpers.defaultInputDecoration('Last Name'),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a last name';
-                    }
-                    return null;
+                    return Helpers.validateNotEmpty(value);
                   },
                 ),
 
-                const SizedBox(height: 24),
-                //parent phone number
+                const SizedBox(height: h24),
+                
+
                 TextFormField(
                   controller: parentPhoneNumberController,
-                  decoration: const InputDecoration(
-                    labelText: 'Parent Phone Number',
-                    border: OutlineInputBorder(),
-                  ),
+                  decoration:
+                      Helpers.defaultInputDecoration('Parent Phone Number'),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a parent phone number';
-                    }
-                    return null;
+                    return Helpers.validateNotEmpty(value);
                   },
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: h24),
 
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  padding: const EdgeInsets.symmetric(vertical: h16),
                   child: ElevatedButton(
                     onPressed: () {
                       // Validate returns true if the form is valid, or false otherwise.
